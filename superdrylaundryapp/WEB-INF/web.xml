@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<web-app>
+	<display-name>Servlet Sample</display-name>
+	<description>Sample App</description>
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/superdrylaundrydb</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	<servlet>
+		<servlet-name>All Services</servlet-name>
+		<servlet-class>AllServicesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>All Services</servlet-name>
+		<url-pattern>/services</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>All Customers</servlet-name>
+		<servlet-class>AllCustomersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>All Customers</servlet-name>
+		<url-pattern>/customers</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>All Locations</servlet-name>
+		<servlet-class>AllLocationsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>All Locations</servlet-name>
+		<url-pattern>/locations</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Search</servlet-name>
+		<servlet-class>SearchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Search</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Add Service</servlet-name>
+		<servlet-class>AddServiceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Add Service</servlet-name>
+		<url-pattern>/addservice</url-pattern>
+	</servlet-mapping>
+</web-app>

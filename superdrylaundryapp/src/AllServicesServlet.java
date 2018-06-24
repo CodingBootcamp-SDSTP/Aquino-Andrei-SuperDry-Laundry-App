@@ -43,7 +43,7 @@ public class AllServicesServlet extends HttpServlet
 				sb.append(wd.getServDetails() + "</servicedetails></washdry>");
 			}
 			else if(s instanceof DryFold) {
-				WashDryFold df = (DryFold)s;
+				DryFold df = (DryFold)s;
 				sb.append("<dryfold><customernumber>");
 				sb.append(df.getCustNum() + "</customernumber><date>");
 				sb.append(df.getDate() + "</date><branch>");
@@ -57,6 +57,6 @@ public class AllServicesServlet extends HttpServlet
 	}
 
 	public void destroy() {
-		assets = null;
+		services = null;
 	}
 }

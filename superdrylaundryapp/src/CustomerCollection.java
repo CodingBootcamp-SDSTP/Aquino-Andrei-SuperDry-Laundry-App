@@ -28,10 +28,10 @@ class CustomerCollection
 		return(customers.size());
 	}
 
-	public Customer getCustomerById(int num) {
+	public Customer getCustomerById(String id) {
 		Customer customer = null;
 		for(int i=0 ; i<getCustomerCount(); i++ ) {
-			if(getCustomerByIndex(i).getCustNum().equals(num)) {
+			if(getCustomerByIndex(i).getCustNum().equalsIgnoreCase(id)) {
 				customer = getCustomerByIndex(i);
 			}
 		}
@@ -52,12 +52,13 @@ class CustomerCollection
 	}
 
 	public boolean matches(Customer c, String str) {
-		String cnum = c.getCnum();
-		String firstName = c.getFirstName.toLowerCase();
-		String lastName = c.getLastName.toLowerCase();
-		String address = c.getAddress.toLowerCase();
-		String weight = Integer.toString(kilos);
-		if(cnum.contains(str) || firstName.contains(str) || lastName.contains(str) || address.contains(str) || weight.contains(str)) {
+		String cnum = c.getCustNum();
+		String firstName = c.getFirstName().toLowerCase();
+		String lastName = c.getLastName().toLowerCase();
+		String address = c.getAddress().toLowerCase();
+		int wt = c.getKilos();
+		String w = Integer.toString(wt);
+		if(cnum.contains(str) || firstName.contains(str) || lastName.contains(str) || address.contains(str) || w.contains(str)) {
 			return(true);
 		}
 		return(false);

@@ -1,9 +1,9 @@
-public class WashDryFold extends Service implements ServiceWithLocation, ServiceWithCustomer, SpecialToString
+public class WashDryFold extends Service implements ServiceWithCustomer, SpecialToString
 {
 	private String custNum;
 	private String branch;
 
-	public WashDryFold (String d, int c, String sd) {
+	public WashDryFold (String sd, int c, String d) {
 		setServDetails(sd);
 		setCost(c);
 		setDate(d);
@@ -28,7 +28,7 @@ public class WashDryFold extends Service implements ServiceWithLocation, Service
 	}
 
 	public void setBranch(String b) {
-		bracnch = b;
+		branch = b;
 	}
 
 	public String getBranch() {

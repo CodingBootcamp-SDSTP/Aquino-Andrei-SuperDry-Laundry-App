@@ -18,7 +18,6 @@ public class AllCustomersServlet extends HttpServlet
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 		out.print(exportToXML());
-		System.out.println("output: " + exportToXML());
 	}
 
 	public String exportToXML() {

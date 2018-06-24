@@ -6,7 +6,7 @@ class Customer
 	private String address;
 	private int kilos;
 
-	private Customer(String cn, String fn, String ln, String ad, int kg) {
+	public Customer(String cn, String fn, String ln, String ad, int kg) {
 		custNum = cn;
 		firstName = fn;
 		lastName = ln;

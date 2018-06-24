@@ -1,4 +1,4 @@
-public class WashDry extends Service implements ServiceWithLocation, ServiceWithCustomer, SpecialToString
+public class WashDry extends Service implements SpecialToString
 {
 	private String custNum;
 	private String branch;
@@ -28,7 +28,7 @@ public class WashDry extends Service implements ServiceWithLocation, ServiceWith
 	}
 
 	public void setBranch(String b) {
-		bracnch = b;
+		branch = b;
 	}
 
 	public String getBranch() {

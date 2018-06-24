@@ -33,7 +33,7 @@ public class ServiceCollection
 		ArrayList<Service> sl = new ArrayList<Service>();
 		String str = s.toLowerCase();
 		for(int i=0 ; i<getServiceCount() ; i++) {
-			sv = getAssetByIndex(i);
+			sv = getServiceByIndex(i);
 			if(matches(sv, str)) {
 				sl.add(sv);
 			}
@@ -42,10 +42,12 @@ public class ServiceCollection
 	}
 
 	public boolean matches(Service s, String str) {
-		String service = s.getServDetails().toLowerCase();
-		int presyo = Integer.toString(cost);
-		int petsa = Integer.toString(date);
-		if(service.contains(str) || presyo.contains(str) || petsa.contains(str)) {
+		String servDetails = s.getServDetails().toLowerCase();
+		//int cost = Integer.toString(cost);
+		int cost = s.getCost();
+		String ab = Integer.toString(cost);
+		String date = s.getDate().toLowerCase();
+		if(servDetails.contains(str) || ab.contains(str) || date.contains(str)) {
 			return(true);
 		}
 		return(false);

@@ -32,7 +32,7 @@ public class AllLocationsServlet extends HttpServlet
 			sb.append("</street><barangay>");
 			sb.append(l.getBrgy());
 			sb.append("</barangay><city>");
-			sb.append(l.city());
+			sb.append(l.getCity());
 			sb.append("</city><units>");
 			sb.append(l.getUnits());
 			sb.append("</units></location>");

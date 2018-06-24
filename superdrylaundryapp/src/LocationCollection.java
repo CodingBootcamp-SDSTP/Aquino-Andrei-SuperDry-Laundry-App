@@ -13,7 +13,7 @@ public class LocationCollection
 	}
 
 	public void removeLocation(Location location) {
-		locations.add(location);
+		locations.remove(location);
 	}
 
 	public ArrayList<Location> getAllLocations() {
@@ -34,7 +34,7 @@ public class LocationCollection
 		String str = s.toLowerCase();
 		for(int i = 0; i<getLocationCount() ; i++ ) {
 			if(matches(l, str)) {
-				ad.add(l);
+				al.add(l);
 			}
 		}
 		return(al);
@@ -45,8 +45,9 @@ public class LocationCollection
 		String street = l.getStreet().toLowerCase();
 		String brgy = l.getBrgy().toLowerCase();
 		String city = l.getCity().toLowerCase();
-		String units = l.getUnits().toString();
-		if(zip.contains(str) || street.contains(str) || brgy.contains(str) || city.contains(str) || units.contains(str)) {
+		int un = l.getUnits();
+		String u = Integer.toString(un);
+		if(zip.contains(str) || street.contains(str) || brgy.contains(str) || city.contains(str) || u.contains(str)) {
 			return(true);
 		}
 		return(false);

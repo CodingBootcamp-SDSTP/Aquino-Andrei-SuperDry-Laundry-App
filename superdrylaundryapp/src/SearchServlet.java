@@ -30,7 +30,7 @@ public class SearchServlet extends HttpServlet
 			ArrayList<Object> o = smd.search(value);
 			for(int i=0; i < o.size() ; i++) {
 				sb.append("<service>");
-				sb.append(o.get(o));
+				sb.append(o.get(i));
 				sb.append("</service>");
 			}
 		}

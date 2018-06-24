@@ -1,9 +1,9 @@
-public class DryFold extends Service implements ServiceWithLocation, ServiceWithCustomer, SpecialToString
+public class DryFold extends Service implements SpecialToString
 {
 	private String custNum;
 	private String branch;
 
-	public DryFold (String d, int c, String sd) {
+	public DryFold (String sd, int c, String d) {
 		setServDetails(sd);
 		setCost(c);
 		setDate(d);
@@ -23,12 +23,12 @@ public class DryFold extends Service implements ServiceWithLocation, ServiceWith
 		custNum = cn;
 	}
 
-	public int getCustNum() {
+	public String getCustNum() {
 		return(custNum);
 	}
 
 	public void setBranch(String b) {
-		bracnch = b;
+		branch = b;
 	}
 
 	public String getBranch() {

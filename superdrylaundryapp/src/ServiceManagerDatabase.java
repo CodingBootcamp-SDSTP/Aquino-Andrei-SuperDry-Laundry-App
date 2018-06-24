@@ -19,8 +19,7 @@ public class ServiceManagerDatabase
 		locations = new LocationCollection();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/superdrylaundrydb?user=andrei&password=bloom&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false");
-			System.out.print("test");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/superdrylaundrydb?user=andrei&password=bloom&serverTimezone=UTC&useSSL=false");
 			readFromDB();
 		}
 		catch(Exception e) {
@@ -34,17 +33,18 @@ public class ServiceManagerDatabase
 		}
 	}
 
-	boolean inserToDB(Service service) {
+	boolean insertToDB(Service service) {
 		PreparedStatement stmt = null;
 		try {
 			if(service instanceof WashDryFold) {
-				WashDryFold wdf = (WashDryFold)service;
-				stmt = conn.preparestatement("INSERT INTO services ( custNum, branch, date, cost, service ) VALUES ( ?, ?, ?, ?, ?);");
-				stmt.setString(1, wdf.getCustNum());
-				stmt.setString(2, wdf.getBranch());
-				stmt.setString(3, wdf.getDate());
-				stmt.setInt(4, wdf.getCost());
+				WashDryFold washdryfold = (WashDryFold)service;
+				stmt = conn.prepareStatement("INSERT INTO services ( custNum, branch, date, cost, service ) VALUES ( ?, ?, ?, ?, ? );");
+				stmt.setString(1, washdryfold.getCustNum());
+				stmt.setString(2, washdryfold.getBranch());
+				stmt.setString(3, washdryfold.getDate());
+				stmt.setInt(4, washdryfold.getCost());
 				stmt.setString(5, "WashDryFold");
+				stmt.executeUpdate();
 			}
 		}
 		catch(Exception e) {
@@ -69,8 +69,8 @@ public class ServiceManagerDatabase
 		return(locations);
 	}
 
-	public Customers getCustomerById(String id) {
-		return(customers.getCustomerById());
+	public Customer getCustomerById(String id) {
+		return(customers.getCustomerById(id));
 	}
 
 	public ArrayList<Object> search(String s) {
@@ -85,7 +85,6 @@ public class ServiceManagerDatabase
 	}
 
 	public boolean readFromDB() {
-		System.out.println("READ from DBBBBB...BBBBBB");
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -98,7 +97,7 @@ public class ServiceManagerDatabase
 					rs.getString("firstName"),
 					rs.getString("lastName"),
 					rs.getString("address"),
-					rs.getInt("kilos"),
+					rs.getString("kilos"),
 					"customers"
 				};
 				createObject(str);
@@ -111,7 +110,7 @@ public class ServiceManagerDatabase
 					rs.getString("street"),
 					rs.getString("brgy"),
 					rs.getString("city"),
-					rs.getInt("units"),
+					rs.getString("units"),
 					"locations"
 				};
 				createObject(str);
@@ -123,9 +122,8 @@ public class ServiceManagerDatabase
 					rs.getString("custNum"),
 					rs.getString("branch"),
 					rs.getString("date"),
-					rs.getInt("cost"),
+					rs.getString("cost"),
 					rs.getString("servDetails"),
-					"locations"
 				};
 				createObject(str);
 			}
@@ -170,16 +168,16 @@ public class ServiceManagerDatabase
 			locations.addLocation(l);
 		}
 		else if("washdryfold".equals(d)) {
-			WashDryFold wdf = new Service(details[0], details[1], details[2], Integer.parseInt(details[3]), details[4]);
-			services.addService(s);
+			WashDryFold wdf = new WashDryFold(details[0], details[1], details[2], Integer.parseInt(details[3]), details[4]);
+			services.addService(wdf);
 		}
 		else if("washdry".equals(d)) {
-			WashDry wd = new Service(details[0], details[1], details[2], Integer.parseInt(details[3]), details[4]);
-			services.addService(s);
+			WashDry wd = new WashDry(details[0], details[1], details[2], Integer.parseInt(details[3]), details[4]);
+			services.addService(wd);
 		}
 		else if("dryfold".equals(d)) {
-			DryFold df = new Service(details[0], details[1], details[2], Integer.parseInt(details[3]). details[4]);
-			services.addService(s);
+			DryFold df = new DryFold(details[0], details[1], details[2], Integer.parseInt(details[3]), details[4]);
+			services.addService(df);
 		}
 	}
 

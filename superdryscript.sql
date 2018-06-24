@@ -31,21 +31,21 @@ INSERT INTO locations(zip, street, brgy, units) VALUES (1230, 'Washington Street
 
 DROP TABLE IF EXISTS services;
 CREATE TABLE IF NOT EXISTS services (
-	id INT NOT NULL AUTO_INCREMENT,
-	PRIMARY KEY (id),
-	cnum INT NOT NULL,
+	id INT AUTO_INCREMENT,
+	PRIMARY KEY(id),
+	custNum VARCHAR(64) NOT NULL,
 	date INT NOT NULL,
 	branch INT NOT NULL,
 	price INT NOT NULL,
 	service VARCHAR(64) NOT NULL,
-	FOREIGN KEY(cnum) REFERENCES customers(id),
+	FOREIGN KEY(custNum) REFERENCES customers(id),
 	FOREIGN KEY(branch) REFERENCES locations(zip)
 	);
 
-INSERT INTO services (cnum, date, branch, price, service) VALUES ((SELECT cnum FROM customers WHERE id=20180002), 20180601, (SELECT branch FROM locations WHERE zip=1940) , 70, 'Dry and Fold');
-INSERT INTO services (cnum, date, branch, price, service) VALUES ((SELECT cnum FROM customers WHERE id=20180004), 20180602, (SELECT branch FROM locations WHERE zip=1230) , 220, 'Wash, Dry and Fold');
-INSERT INTO services (cnum, date, branch, price, service) VALUES ((SELECT cnum FROM customers WHERE id=20180005), 20180603, (SELECT branch FROM locations WHERE zip=1230) , 100, 'Wash and Dry');
-INSERT INTO services (cnum, date, branch, price, service) VALUES ((SELECT cnum FROM customers WHERE id=20180001), 20180601, (SELECT branch FROM locations WHERE zip=1940) , 100, 'Wash and Dry');
-INSERT INTO services (cnum, date, branch, price, service) VALUES ((SELECT cnum FROM customers WHERE id=20180003), 20180602, (SELECT branch FROM locations WHERE zip=1870) , 100, 'Wash and Dry');
-INSERT INTO services (cnum, date, branch, price, service) VALUES ((SELECT cnum FROM customers WHERE id=20180006), 20180604, (SELECT branch FROM locations WHERE zip=1940) , 120, 'Wash, Dry and Fold');
-INSERT INTO services (cnum, date, branch, price, service) VALUES ((SELECT cnum FROM customers WHERE id=20180007), 20180604, (SELECT branch FROM locations WHERE zip=1230) , 120, 'Wash, Dry and Fold');
+INSERT INTO services (custNum, date, branch, price, service) VALUES ((SELECT id FROM customers WHERE id=20180002), 20180601, (SELECT zip FROM locations WHERE zip=1940), 70, 'Dry and Fold');
+INSERT INTO services (custNum, date, branch, price, service) VALUES ((SELECT id FROM customers WHERE id=20180004), 20180602, (SELECT zip FROM locations WHERE zip=1230), 220, 'Wash, Dry and Fold');
+INSERT INTO services (custNum, date, branch, price, service) VALUES ((SELECT id FROM customers WHERE id=20180005), 20180603, (SELECT zip FROM locations WHERE zip=1230), 100, 'Wash and Dry');
+INSERT INTO services (custNum, date, branch, price, service) VALUES ((SELECT id FROM customers WHERE id=20180001), 20180601, (SELECT zip FROM locations WHERE zip=1940), 100, 'Wash and Dry');
+INSERT INTO services (custNum, date, branch, price, service) VALUES ((SELECT id FROM customers WHERE id=20180003), 20180602, (SELECT zip FROM locations WHERE zip=1870), 100, 'Wash and Dry');
+INSERT INTO services (custNum, date, branch, price, service) VALUES ((SELECT id FROM customers WHERE id=20180006), 20180604, (SELECT zip FROM locations WHERE zip=1940), 120, 'Wash, Dry and Fold');
+INSERT INTO services (custNum, date, branch, price, service) VALUES ((SELECT id FROM customers WHERE id=20180007), 20180604, (SELECT zip FROM locations WHERE zip=1230), 120, 'Wash, Dry and Fold');
